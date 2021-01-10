@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  cypress:
+    image: cypress/base
+#    entrypoint: node_modules/.bin/cypress
+    env_file:
+      - .env
+      - .local.env
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+      - ./.cache:/root/.cache
