@@ -28,6 +28,7 @@ describe('Opening page to put basic information', () => {
         '* Belgium, Bulgaria, Denmark, Estonia, Finland, France, Greece, Great Britain, Ireland, Iceland, Italy, ' +
         'Croatia, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Norway, Liechtenstein, Austria, Poland, Portugal, ' +
         'Romania, Sweden, Slovak Republic, Slovenia, Spain, Czech Republic, Hungary or Cyprus ?',() => {
+            cy.wait(4000)
             cy
                 .get('select[name="cobFamAngInBerlin"]')
                 .select(Cypress.env('FM_FROM_UE'), {force: true})
@@ -35,7 +36,7 @@ describe('Opening page to put basic information', () => {
     })
 
     it('Selecting Request', () => {
-        cy.wait(2000)
+        cy.wait(4000)
         cy.get('#cobAnliegen').select(Cypress.env('REQUEST_OPTION'))
     })
 
@@ -72,3 +73,38 @@ describe('Opening personal data page', () => {
         cy.get('#txtNextpage').click()
     })
 })
+
+describe('Date selection page', () => {
+
+    it('Verify first month', () => {
+        checkCalendar();
+    })
+
+    it('Go to next month', () => {
+        cy.get('#labnextMonth').click()
+    })
+
+    it('Verify second month', () => {
+        checkCalendar();
+    })
+})
+
+function checkCalendar(){
+    cy.screenshot()
+    var i;
+    const weeks = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+    for (i = 0; i < 6; i++) {
+        weeks.forEach(week => {
+            cy.get('#calItem'+week+'_'+i).click()
+           /* cy
+                .get('[type="checkbox"]')
+                .its('length')
+                .should('be.gt', 0)
+                .then((checkbox) => {
+                    cy.log('There are days free')
+                    cy.screenshot()
+                })*/
+
+        });
+    }
+}
