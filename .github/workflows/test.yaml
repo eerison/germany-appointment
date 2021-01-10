@@ -9,20 +9,37 @@ on:
 
 jobs:
   cypress-run:
-    name: Appointment
+    name: Cypress run
     runs-on: ubuntu-latest
-
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
 
       - name: Cypress run
-        uses: cypress-io/github-action@v1
-        with:
-          record: true
-          build: npm run build
-          start: npm start
-          wait-on: http://localhost:3030
+        uses: cypress-io/github-action@v2
+        continue-on-error: true
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+          CYPRESS_BASE_URL: https://service.berlin.de
+          CYPRESS_FROM_COUNTRY: Brazil
+          CYPRESS_FM_FROM_UE: No
+          CYPRESS_REQUEST_OPTION: "Residence permit to attend a language course (section 16f)"
+
+          #Form data
+          CYPRESS_FIRST_NAME: "Your First name"
+          CYPRESS_LAST_NAME: "Your Last Name"
+          CYPRESS_BIRTHDAY_DAY: 1
+          CYPRESS_BIRTHDAY_MONTH: 2
+          CYPRESS_BIRTHDAY_YEAR: 2000
+          CYPRESS_EMAIL: your@email.com
+          CYPRESS_NUMBER_OF_APPLICANTS: 1
+          CYPRESS_HAS_RESIDENT_PERMITTED: No
+
+      - name: Screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          path: cypress/screenshots/
+
+      - name: Videos
+        uses: actions/upload-artifact@v2
+        with:
+          path: cypress/videos/

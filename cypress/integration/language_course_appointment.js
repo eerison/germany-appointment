@@ -96,14 +96,14 @@ function checkCalendar(){
     for (i = 0; i < 6; i++) {
         weeks.forEach(week => {
             cy.get('#calItem'+week+'_'+i).click()
-           /* cy
+            cy
                 .get('[type="checkbox"]')
                 .its('length')
                 .should('be.gt', 0)
                 .then((checkbox) => {
                     cy.log('There are days free')
                     cy.screenshot()
-                })*/
+                })
 
         });
     }
