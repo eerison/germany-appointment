@@ -1,5 +1,6 @@
 describe('Opening page to make an appointment', () => {
     it('Loading page', () => {
+        cy.screenshot('home-page')
         cy.visit('/dienstleistung/324289/en/')
     })
 
