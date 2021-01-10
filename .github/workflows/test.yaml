@@ -1,0 +1,28 @@
+name: End-to-end tests
+on:
+  push:
+    branches:
+      - '*'
+  schedule:
+    # 5 minutes
+    - cron:  '*/5 * * * *'
+
+jobs:
+  cypress-run:
+    name: Appointment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          record: true
+          build: npm run build
+          start: npm start
+          wait-on: http://localhost:3030
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
