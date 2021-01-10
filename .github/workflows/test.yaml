@@ -1,0 +1,28 @@
+name: Test
+on:
+  schedule:
+    # 5 minutes
+    - cron:  '*/5 * * * *'
+
+jobs:
+  test:
+    name: Node
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: installing cypress
+        uses: addnab/docker-run-action@v1
+        with:
+          image: cypress/base
+          run: |
+            npm install
+            node_modules/.bin/cypress install
+
+      - name: runing tests
+        uses: addnab/docker-run-action@v1
+        with:
+          image: cypress/base
+          run: node_modules/.bin/cypress run
