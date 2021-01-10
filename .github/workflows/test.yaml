@@ -43,3 +43,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: cypress/videos/
+
+      - name: Checking if there are screenshot wih free days
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "cypress/screenshots/free-days.png"
+
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: echo All files exists!

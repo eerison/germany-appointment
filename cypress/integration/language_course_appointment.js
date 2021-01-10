@@ -75,7 +75,6 @@ describe('Opening personal data page', () => {
 })
 
 describe('Date selection page', () => {
-
     it('Verify first month', () => {
         checkCalendar();
     })
@@ -87,24 +86,18 @@ describe('Date selection page', () => {
     it('Verify second month', () => {
         checkCalendar();
     })
-})
 
-function checkCalendar(){
-    cy.screenshot()
-    var i;
-    const weeks = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-    for (i = 0; i < 6; i++) {
-        weeks.forEach(week => {
-            cy.get('#calItem'+week+'_'+i).click()
-            cy
-                .get('[type="checkbox"]')
-                .its('length')
-                .should('be.gt', 0)
-                .then((checkbox) => {
-                    cy.log('There are days free')
-                    cy.screenshot()
+    function checkCalendar() {
+        cy
+            .get('.CELL > a')
+            .each(($el) => {
+                cy.wrap($el).click()
+
+                cy.get("body").then($body => {
+                    if ($body.find('[type="checkbox"]').length > 0) {
+                        cy.screenshot('free-days')
+                    }
                 })
-
-        });
+            })
     }
-}
+})
