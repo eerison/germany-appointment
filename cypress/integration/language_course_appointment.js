@@ -76,29 +76,40 @@ describe('Opening personal data page', () => {
 })
 
 describe('Date selection page', () => {
+    var foundADay = false;
+
     it('Verify first month', () => {
         checkCalendar();
     })
 
-    it('Go to next month', () => {
-        cy.get('#labnextMonth').click()
-    })
+    if (!foundADay) {
+        it('Go to next month', () => {
+            cy.get('#labnextMonth').click()
+        })
 
-    it('Verify second month', () => {
-        checkCalendar();
-    })
+        it('Verify second month', () => {
+            checkCalendar();
+        })
+    }
 
     function checkCalendar() {
-        cy
-            .get('.CELL > a')
-            .each(($el) => {
-                cy.wrap($el).click()
-
-                cy.get("body").then($body => {
-                    if ($body.find('[type="checkbox"]').length > 0) {
-                        cy.screenshot('free-days')
-                    }
-                })
-            })
+        cy.get('.CELL > a[link="1"]').click()
+        cy.get('[type="checkbox"]').check().then(()=> {
+            foundADay = true;
+        })
     }
+
+    it('go to next page', () => {
+        cy.get('#txtNextpage').click()
+    })
+})
+
+describe('Data description page', () => {
+    it('Validate Data', () => {
+        cy.screenshot('free-days')
+    })
+
+    it('Book an appointment', () => {
+        cy.log('Click on button!')
+    })
 })
