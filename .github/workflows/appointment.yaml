@@ -10,6 +10,7 @@ jobs:
   cypress-run:
     name: Cypress run
     runs-on: ubuntu-latest
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
@@ -17,6 +18,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         continue-on-error: true
+        with:
+          record: ${{ contains(secrets.CYPRESS_RECORD_KEY, '-') }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_FROM_COUNTRY: Brazil
