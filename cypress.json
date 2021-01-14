@@ -1,1 +1,7 @@
-{}
+{
+  "baseUrl" : "https://service.berlin.de",
+  "defaultCommandTimeout" : 120000,
+  "env": {
+    "FAIL_FAST": true
+  }
+}

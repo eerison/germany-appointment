@@ -1,10 +1,9 @@
-name: End-to-end tests
+name: Looking for an appointment
 on:
   push:
     branches:
       - '*'
   schedule:
-    # 5 minutes
     - cron:  '*/3 * * * *'
 
 jobs:
@@ -18,7 +17,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_BASE_URL: https://service.berlin.de
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
           CYPRESS_FROM_COUNTRY: Brazil
           CYPRESS_FM_FROM_UE: No
           CYPRESS_REQUEST_OPTION: "Residence permit to attend a language course (section 16f)"

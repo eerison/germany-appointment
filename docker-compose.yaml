@@ -2,7 +2,6 @@ version: '3.8'
 services:
   cypress:
     image: cypress/base
-#    entrypoint: node_modules/.bin/cypress
     env_file:
       - .env
       - .local.env

@@ -1,6 +1,12 @@
 {
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^6.2.1"
+    "cypress": "^6.2.1",
+    "cypress-fail-fast": "^1.4.0"
+  },
+  "scripts": {
+    "cy:install": "node_modules/.bin/cypress install",
+    "cy:run": "node_modules/.bin/cypress run",
+    "cy:open": "node_modules/.bin/cypress open"
   }
 }
