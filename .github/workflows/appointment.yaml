@@ -18,7 +18,7 @@ jobs:
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
-          record: true
+          record: ${{ secrets.CYPRESS_RECORD_KEY }} != ""
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_FROM_COUNTRY: Brazil
