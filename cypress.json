@@ -1,6 +1,5 @@
 {
   "baseUrl" : "https://service.berlin.de",
-  "defaultCommandTimeout" : 120000,
   "pageLoadTimeout" : 120000,
   "projectId": "so3pi8",
   "env": {

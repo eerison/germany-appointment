@@ -76,28 +76,28 @@ describe('Opening personal data page', () => {
 })
 
 describe('Date selection page', () => {
-    var foundADay = false;
+    var nextMonth = true;
+    var monthPage = 1;
 
-    it('Verify first month', () => {
-        checkCalendar();
-    })
+    do {
+        it('Verify month page :' + monthPage, () => {
+            if (cy.get('.CELL').find('> a[link="1"]').length > 0) {
+                cy.get('.CELL > a[link="1"]').click()
+                cy
+                    .get('[type="checkbox"]')
+                    .check()
+                    .then(() => {
+                        nextMonth = false;
+                    })
+            }
 
-    if (!foundADay) {
-        it('Go to next month', () => {
-            cy.get('#labnextMonth').click()
+            if (!nextMonth) {
+                cy.get('#labnextMonth').click();
+            }
         })
 
-        it('Verify second month', () => {
-            checkCalendar();
-        })
-    }
-
-    function checkCalendar() {
-        cy.get('.CELL > a[link="1"]').click()
-        cy.get('[type="checkbox"]').check().then(()=> {
-            foundADay = true;
-        })
-    }
+        monthPage++;
+    } while (nextMonth && monthPage < 3)
 
     it('go to next page', () => {
         cy.get('#txtNextpage').click()
