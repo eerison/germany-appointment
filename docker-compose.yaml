@@ -2,9 +2,6 @@ version: '3.8'
 services:
   cypress:
     image: cypress/base
-    env_file:
-      - .env
-      - .local.env
     working_dir: /e2e
     volumes:
       - ./:/e2e

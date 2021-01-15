@@ -17,12 +17,6 @@ To start to use this project you just need to `fork` the project, and you will r
 
 Those steps will be helpful if you wish to help the project.
 
-##### Change values inside of `.local.env` with your own data.
-
-```shell script
-cp .env .local.env
-```
-
 ##### install cypress
 ```shell script
 docker-compose run --rm cypress npm install && yarn cy:install

@@ -3,6 +3,19 @@
   "pageLoadTimeout" : 120000,
   "projectId": "so3pi8",
   "env": {
-    "FAIL_FAST": true
+    "FAIL_FAST": true,
+
+    "FROM_COUNTRY": "Brazil",
+    "FM_FROM_UE": "No",
+    "REQUEST_OPTION": "Residence permit to attend a language course (section 16f)",
+
+    "FIRST_NAME": "Your First name",
+    "LAST_NAME": "Your Last Name",
+    "BIRTHDAY_DAY": 1,
+    "BIRTHDAY_MONTH": 2,
+    "BIRTHDAY_YEAR": 2000,
+    "EMAIL": "your@email.com",
+    "NUMBER_OF_APPLICANTS": 1,
+    "HAS_RESIDENT_PERMITTED": "No"
   }
 }
