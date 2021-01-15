@@ -81,7 +81,11 @@ describe('Date selection page', () => {
                 .then(($day) => {
                     if ($day.attr('link') === '1') {
                         cy.wrap($day).click()
-                        cy.get('[type="checkbox"]').check()
+                        cy
+                            .get('[type="checkbox"]')
+                            .then((checkbox) => {
+                                cy.wrap(checkbox).check()
+                            })
                         nextMonth = false;
                     }
                 })
