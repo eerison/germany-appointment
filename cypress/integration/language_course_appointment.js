@@ -76,6 +76,7 @@ describe('Date selection page', () => {
 
     do {
         it('Verify month page :' + monthPage, () => {
+            cy.wait(2000)
             cy
                 .get('.CELL > a')
                 .then(($day) => {
