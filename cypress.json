@@ -1,5 +1,5 @@
 {
-  "baseUrl" : "https://service.berlin.de",
+  "baseUrl" : "https://formular.berlin.de",
   "pageLoadTimeout" : 120000,
   "projectId": "so3pi8",
   "env": {

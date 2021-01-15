@@ -1,15 +1,9 @@
-describe('Opening page to make an appointment', () => {
+describe('Opening Book an appointment Page', () => {
     it('Loading page', () => {
-        cy.visit('/dienstleistung/324289/en/')
+        cy.visit('xima-forms-29/get/14963116144270000')
         cy.screenshot('home-page')
     })
 
-    it("Clicking on Make an Appointment button", () => {
-        cy.get('.termin-buchen').click()
-    })
-})
-
-describe('Opening Book an appointment Page', () => {
     it('Switching to english language', () => {
         cy.contains('English').click()
     })
@@ -29,20 +23,22 @@ describe('Opening page to put basic information', () => {
         '* Belgium, Bulgaria, Denmark, Estonia, Finland, France, Greece, Great Britain, Ireland, Iceland, Italy, ' +
         'Croatia, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Norway, Liechtenstein, Austria, Poland, Portugal, ' +
         'Romania, Sweden, Slovak Republic, Slovenia, Spain, Czech Republic, Hungary or Cyprus ?',() => {
-            // cy.wait(4000)
+            cy.wait(4000)
             cy
                 .get('select[name="cobFamAngInBerlin"]')
-                .select(Cypress.env('FM_FROM_UE'), {force: true, timeout: 30000 })
+                .select(Cypress.env('FM_FROM_UE'), {force: true })
                 .should('have.value', Cypress.env('FM_FROM_UE'))
     })
 
     it('Selecting Request', () => {
-        // cy.wait(4000)
-        cy.get('#cobAnliegen').select(Cypress.env('REQUEST_OPTION'), { timeout: 30000 })
+        cy.wait(7000)
+        cy.get('#cobAnliegen').select(Cypress.env('REQUEST_OPTION'))
     })
 
     it('Terms and conditions', () => {
-        cy.get('[type="checkbox"]', { timeout: 30000 }).check()
+        cy.get('#labNextpage').scrollIntoView()
+        cy.wait(4000)
+        cy.get('[type="checkbox"]').check()
     })
 
     it('Click next button', () => {
@@ -80,15 +76,15 @@ describe('Date selection page', () => {
 
     do {
         it('Verify month page :' + monthPage, () => {
-            if (cy.get('.CELL').find('> a[link="1"]').length > 0) {
-                cy.get('.CELL > a[link="1"]').click()
-                cy
-                    .get('[type="checkbox"]')
-                    .check()
-                    .then(() => {
+            cy
+                .get('CELL > a')
+                .then(($day) => {
+                    if ($day.attr('link') === '1') {
+                        cy.wrap($day).click()
+                        cy.get('[type="checkbox"]').check()
                         nextMonth = false;
-                    })
-            }
+                    }
+                })
 
             if (!nextMonth) {
                 cy.get('#labnextMonth').click();
