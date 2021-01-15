@@ -29,21 +29,20 @@ describe('Opening page to put basic information', () => {
         '* Belgium, Bulgaria, Denmark, Estonia, Finland, France, Greece, Great Britain, Ireland, Iceland, Italy, ' +
         'Croatia, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Norway, Liechtenstein, Austria, Poland, Portugal, ' +
         'Romania, Sweden, Slovak Republic, Slovenia, Spain, Czech Republic, Hungary or Cyprus ?',() => {
-            cy.wait(4000)
+            // cy.wait(4000)
             cy
                 .get('select[name="cobFamAngInBerlin"]')
-                .select(Cypress.env('FM_FROM_UE'), {force: true})
+                .select(Cypress.env('FM_FROM_UE'), {force: true, timeout: 30000 })
                 .should('have.value', Cypress.env('FM_FROM_UE'))
     })
 
     it('Selecting Request', () => {
-        cy.wait(4000)
-        cy.get('#cobAnliegen').select(Cypress.env('REQUEST_OPTION'))
+        // cy.wait(4000)
+        cy.get('#cobAnliegen').select(Cypress.env('REQUEST_OPTION'), { timeout: 30000 })
     })
 
     it('Terms and conditions', () => {
-        cy.wait(2000)
-        cy.get('[type="checkbox"]').check()
+        cy.get('[type="checkbox"]', { timeout: 30000 }).check()
     })
 
     it('Click next button', () => {
