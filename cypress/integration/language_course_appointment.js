@@ -77,7 +77,7 @@ describe('Date selection page', () => {
     do {
         it('Verify month page :' + monthPage, () => {
             cy
-                .get('CELL > a')
+                .get('.CELL > a')
                 .then(($day) => {
                     if ($day.attr('link') === '1') {
                         cy.wrap($day).click()
