@@ -81,11 +81,6 @@ describe('Date selection page', () => {
                 .then(($day) => {
                     if ($day.attr('link') === '1') {
                         cy.wrap($day).click()
-                        cy
-                            .get('[type="checkbox"]')
-                            .then((checkbox) => {
-                                cy.wrap(checkbox).check()
-                            })
                         nextMonth = false;
                     }
                 })
@@ -97,6 +92,14 @@ describe('Date selection page', () => {
 
         monthPage++;
     } while (nextMonth && monthPage < 3)
+
+    it('Choose an free time', () => {
+        cy
+            .get('[type="checkbox"]')
+            .then((checkbox) => {
+                cy.wrap(checkbox).check()
+            })
+    })
 
     it('go to next page', () => {
         cy.get('#txtNextpage').click()
