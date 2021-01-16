@@ -22,22 +22,18 @@ describe('Opening page to put basic information', () => {
         'Do you live with a family member (e.g. wife, husband or child), who is a national of: ' +
         '* Belgium, Bulgaria, Denmark, Estonia, Finland, France, Greece, Great Britain, Ireland, Iceland, Italy, ' +
         'Croatia, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Norway, Liechtenstein, Austria, Poland, Portugal, ' +
-        'Romania, Sweden, Slovak Republic, Slovenia, Spain, Czech Republic, Hungary or Cyprus ?',() => {
-            cy.wait(4000)
+        'Romania, Sweden, Slovak Republic, Slovenia, Spain, Czech Republic, Hungary or Cyprus ?', { retries: 10 }, () => {
             cy
                 .get('select[name="cobFamAngInBerlin"]')
                 .select(Cypress.env('FM_FROM_UE'), {force: true })
                 .should('have.value', Cypress.env('FM_FROM_UE'))
     })
 
-    it('Selecting Request', () => {
-        cy.wait(7000)
+    it('Selecting Request', { retries: 10 }, () => {
         cy.get('#cobAnliegen').select(Cypress.env('REQUEST_OPTION'))
     })
 
-    it('Terms and conditions', () => {
-        cy.get('#labNextpage').scrollIntoView()
-        cy.wait(4000)
+    it('Terms and conditions', { retries: 10 }, () => {
         cy.get('[type="checkbox"]').check()
     })
 
@@ -76,7 +72,6 @@ describe('Date selection page', () => {
 
     do {
         it('Verify month page :' + monthPage, () => {
-            cy.wait(2000)
             cy
                 .get('.CELL > a')
                 .then(($day) => {
@@ -85,14 +80,16 @@ describe('Date selection page', () => {
                         nextMonth = false;
                     }
                 })
-
-            if (!nextMonth) {
-                cy.get('#labnextMonth').click();
-            }
         })
 
+        if (nextMonth) {
+            it('Go to next month', () => {
+                cy.get('#labnextMonth').click();
+            })
+        }
+
         monthPage++;
-    } while (nextMonth && monthPage < 3)
+    } while (nextMonth && monthPage <= 3)
 
     it('Choose an free time', () => {
         cy
