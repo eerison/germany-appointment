@@ -27,8 +27,8 @@ docker-compose run --rm cypress npm install && yarn cy:install
 docker-compose run --rm cypress yarn cy:run
 ```
 
-[cypress_badge]: https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/so3pi8&style=flat&logo=cypress
-[cypress_link]: https://dashboard.cypress.io/projects/so3pi8/runs
+[cypress_badge]: https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/bndqcj/master&style=flat&logo=cypress
+[cypress_link]: https://dashboard.cypress.io/projects/bndqcj/runs
 [test_badge]: https://github.com/eerison/germany-appointment/workflows/Looking%20for%20an%20appointment/badge.svg?branch=master
 [test_link]: https://github.com/eerison/germany-appointment/actions?query=workflow%3A%22Looking+for+an+appointment%22+branch%3Amaster
 [licence_badge]: https://img.shields.io/badge/License-MIT-yellow.svg
