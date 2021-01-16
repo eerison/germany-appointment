@@ -81,7 +81,9 @@ describe('Date selection page', () => {
                 .then(() => {
                     cy.get('#labnextMonth').invoke('removeAttr', 'onClick')
                 })
+        })
 
+        it('Click next month', () => {
             cy.get('#labnextMonth').click();
         })
 
