@@ -67,34 +67,33 @@ describe('Opening personal data page', () => {
 })
 
 describe('Date selection page', () => {
-    var nextMonth = true;
     var monthPage = 1;
 
     do {
         it('Verify month page :' + monthPage, () => {
+
             cy
-                .get('.CELL > a')
-                .then(($day) => {
-                    if ($day.attr('link') === '1') {
-                        cy.wrap($day).click()
-                        nextMonth = false;
-                    }
+                .on('fail', (err, runnable) => {
+                    return false
+                });
+
+            cy
+                .get('.CELL > a[link="1"]')
+                .click({multiple: true})
+                .then(() => {
+                    cy.get('#labnextMonth').invoke('removeAttr', 'onClick')
                 })
+
+            cy.get('#labnextMonth').click();
         })
 
-        if (nextMonth) {
-            it('Go to next month', () => {
-                cy.get('#labnextMonth').click();
-            })
-        }
-
         monthPage++;
-    } while (nextMonth && monthPage <= 3)
+    } while (monthPage <= 3)
 
     it('Choose an free time', () => {
         cy
             .get('[type="checkbox"]')
-            .then((checkbox) => {
+            .each((checkbox) => {
                 cy.wrap(checkbox).check()
             })
     })
