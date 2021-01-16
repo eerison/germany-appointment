@@ -88,12 +88,13 @@ describe('Date selection page', () => {
         monthPage++;
     } while (monthPage <= 3)
 
-    it('Choose an free time', () => {
+    it('Choose an free time', {retries: 3 }, () => {
         cy
             .get('[type="checkbox"]')
             .each((checkbox) => {
                 cy.wrap(checkbox).check()
             })
+        cy.screenshot('appointment-time')
     })
 
     it('go to next page', () => {

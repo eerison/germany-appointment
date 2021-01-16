@@ -4,7 +4,8 @@ on:
     branches:
       - '*'
   schedule:
-    - cron:  '*/3 * * * *'
+    # every 3 minutes, 7 to 12 Berlin time, monday to friday
+    - cron:  '*/3 6-11 * * 1-5'
 
 jobs:
   cypress-run:
