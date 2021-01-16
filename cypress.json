@@ -2,7 +2,7 @@
   "baseUrl" : "https://formular.berlin.de",
   "pageLoadTimeout" : 120000,
   "projectId": "so3pi8",
-  "retries": 20,
+  "retries": 6,
   "env": {
     "FAIL_FAST": true,
 
