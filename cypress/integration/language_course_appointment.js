@@ -93,6 +93,7 @@ describe('Date selection page', () => {
     it('Choose an free time', {retries: 3 }, () => {
         cy
             .get('[type="checkbox"]')
+            .should('be.visible')
             .each((checkbox) => {
                 cy.wrap(checkbox).check()
             })
