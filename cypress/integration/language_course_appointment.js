@@ -95,7 +95,7 @@ describe('Date selection page', () => {
             .get('[type="checkbox"]')
             .should('be.visible')
             .each((checkbox) => {
-                cy.wrap(checkbox).check()
+                cy.wrap(checkbox).check({force: true})
             })
         cy.screenshot('appointment-time')
     })
